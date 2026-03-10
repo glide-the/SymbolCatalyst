@@ -1,0 +1,31 @@
+{
+  "asset_type": "card-backgrounds",
+  "total_count": 5,
+  "assets": [
+    {
+      "filename": "placeholder_001.svg",
+      "path": "card-backgrounds/placeholder_001.svg",
+      "type": "svg"
+    },
+    {
+      "filename": "placeholder_002.svg",
+      "path": "card-backgrounds/placeholder_002.svg",
+      "type": "svg"
+    },
+    {
+      "filename": "placeholder_003.svg",
+      "path": "card-backgrounds/placeholder_003.svg",
+      "type": "svg"
+    },
+    {
+      "filename": "placeholder_004.svg",
+      "path": "card-backgrounds/placeholder_004.svg",
+      "type": "svg"
+    },
+    {
+      "filename": "placeholder_005.svg",
+      "path": "card-backgrounds/placeholder_005.svg",
+      "type": "svg"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "fonts": {
+    "NotoSansSC": {
+      "family": "Noto Sans SC",
+      "weights": [
+        400,
+        700
+      ],
+      "url": "https://fonts.google.com/noto/specimen/Noto+Sans+SC"
+    },
+    "Inter": {
+      "family": "Inter",
+      "weights": [
+        400,
+        600,
+        700
+      ],
+      "url": "https://fonts.google.com/specimen/Inter"
+    },
+    "JetBrainsMono": {
+      "family": "JetBrains Mono",
+      "weights": [
+        400,
+        700
+      ],
+      "url": "https://www.jetbrains.com/lp/mono/"
+    },
+    "LXGWWenKai": {
+      "family": "LXGW WenKai",
+      "weights": [
+        400,
+        700
+      ],
+      "url": "https://github.com/lxgw/LxgwWenKai"
+    }
+  },
+  "instructions": {
+    "google_fonts": "Download from Google Fonts: https://fonts.google.com — search by family name",
+    "lxgw_wenkai": "Download from GitHub releases: https://github.com/lxgw/LxgwWenKai/releases",
+    "jetbrains_mono": "Download from: https://www.jetbrains.com/lp/mono/",
+    "note": "Fonts are not auto-downloaded due to size. Use this manifest to fetch manually."
+  }
+}

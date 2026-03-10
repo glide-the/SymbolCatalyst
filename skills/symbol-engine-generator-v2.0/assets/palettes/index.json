@@ -1,0 +1,18 @@
+{
+  "assets": [
+    {
+      "filename": "valence_palette.json",
+      "source": "generated",
+      "license": "n/a",
+      "usage": "palette",
+      "notes": "5-dimension valence color mapping"
+    },
+    {
+      "filename": "valence_palette.css",
+      "source": "generated",
+      "license": "n/a",
+      "usage": "palette",
+      "notes": "CSS custom properties for valence colors"
+    }
+  ]
+}

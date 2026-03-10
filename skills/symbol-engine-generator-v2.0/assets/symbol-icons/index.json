@@ -1,0 +1,28 @@
+{
+  "assets": [
+    {
+      "filename": "circle.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "symbol-icon",
+      "notes": "Geometric shape: circle — 流动态/凝固态/幻想结 node icon"
+    },
+    {
+      "filename": "diamond.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "symbol-icon",
+      "notes": "Geometric shape: diamond — 流动态/凝固态/幻想结 node icon"
+    },
+    {
+      "filename": "hexagon.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "symbol-icon",
+      "notes": "Geometric shape: hexagon — 流动态/凝固态/幻想结 node icon"
+    }
+  ]
+}

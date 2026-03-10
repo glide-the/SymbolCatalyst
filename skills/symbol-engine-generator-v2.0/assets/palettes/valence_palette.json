@@ -1,0 +1,27 @@
+{
+  "tension": {
+    "primary": "#E63946",
+    "secondary": "#F4845F",
+    "label": "张力"
+  },
+  "oppression": {
+    "primary": "#4A0E4E",
+    "secondary": "#3D3D3D",
+    "label": "压迫"
+  },
+  "seduction": {
+    "primary": "#E91E90",
+    "secondary": "#FF69B4",
+    "label": "诱惑"
+  },
+  "hesitation": {
+    "primary": "#A8DADC",
+    "secondary": "#B0B0B0",
+    "label": "迟疑"
+  },
+  "clarity": {
+    "primary": "#06D6A0",
+    "secondary": "#1D8A6E",
+    "label": "清明"
+  }
+}

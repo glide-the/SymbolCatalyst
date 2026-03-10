@@ -1,0 +1,439 @@
+================================================================================
+SYMBOL ENGINE GENERATOR v2.0 - RULE ENGINE PSEUDO-CODE
+================================================================================
+Generated: 2026-02-18
+Domain: Narrative Analysis
+Language: Pseudo-Code (Language Agnostic)
+
+================================================================================
+CORE FUNCTIONS
+================================================================================
+
+FUNCTION ingest_field(I1_discourse_flow, I2_tool_description, I3_observer_stance)
+    INPUT:
+        - I1: string (natural language discourse)
+        - I2: object {tool_type, constraints, linearity, reversibility}
+        - I3: object {interrogation_intensity, silence_threshold, tolerance}
+
+    OUTPUT: fantasy_candidates[]
+
+    PROCESS:
+        1. Scan discourse flow for undefined but repeated fragments
+        2. Detect patterns: repeated nouns, repeated causal structures
+        3. Extract candidates with repetition_count >= 2
+
+    FAILURE STRATEGY:
+        IF discourse_flow is empty THEN
+            RETURN empty_candidates + log_warning("Empty discourse")
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION extract_repetition(fantasy_candidates)
+    INPUT: fantasy_candidates[]
+
+    OUTPUT: repetition_patterns[]
+
+    PROCESS:
+        FOR each candidate IN fantasy_candidates
+            pattern = {
+                text: candidate.text,
+                count: count_occurrences(candidate.text, discourse_flow),
+                context: extract_context(candidate.text, window=50)
+            }
+            ADD pattern TO repetition_patterns
+        END FOR
+
+    FAILURE STRATEGY:
+        IF no_patterns_found THEN
+            RETURN default_patterns + log_warning("No repetition detected")
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION slice_symbols(repetition_patterns)
+    INPUT: repetition_patterns[]
+
+    OUTPUT: raw_symbols[]
+
+    PROCESS:
+        FOR each pattern IN repetition_patterns
+            symbol = {
+                id: generate_id("sym"),
+                label: extract_label(pattern.text),
+                valence: analyze_valence(pattern.context),
+                carrier: detect_carrier_type(pattern.text),
+                origin: pattern.text_position,
+                time_form: detect_time_form(pattern.text)
+            }
+            ADD symbol TO raw_symbols
+        END FOR
+
+    FAILURE STRATEGY:
+        IF no_symbols_extracted THEN
+            RETURN minimal_symbol_set({carrier, path, purpose})
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION freeze_definitions(raw_symbols, freeze_threshold=3)
+    INPUT: raw_symbols[], freeze_threshold
+
+    OUTPUT: frozen_symbols[], frozen_definitions[]
+
+    PROCESS:
+        FOR each symbol IN raw_symbols
+            IF symbol.repetition_count >= freeze_threshold THEN
+                frozen_symbol = {
+                    ...symbol,
+                    frozen: true,
+                    definition: generate_definition(symbol.contexts)
+                }
+                ADD frozen_symbol TO frozen_symbols
+                ADD frozen_symbol.definition TO frozen_definitions
+            END IF
+        END FOR
+
+    FAILURE STRATEGY:
+        IF none_frozen THEN
+            MARK all_symbols "unfrozen" + log_warning("Below freeze threshold")
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION build_fantasy_knots(frozen_symbols, repetition_patterns)
+    INPUT: frozen_symbols[], repetition_patterns[]
+
+    OUTPUT: fantasy_knots[]
+
+    PROCESS:
+        FOR each pattern IN repetition_patterns
+            knot = {
+                id: generate_id("fk"),
+                repetition_pattern: pattern.structure,
+                force_index: calculate_force_index(
+                    pattern.count,
+                    pattern.exclusivity_score,
+                    pattern.power_chain_trigger
+                ),
+                exclusivity_filters: extract_filters(pattern.context),
+                related_symbols: link_symbols_to_pattern(pattern, frozen_symbols)
+            }
+            ADD knot TO fantasy_knots
+        END FOR
+
+    FAILURE STRATEGY:
+        IF no_knots_built THEN
+            RETURN empty_knots + log_warning("Insufficient pattern data")
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION generate_propositions_with_boundaries(symbol_graph, fantasy_knots)
+    INPUT: symbol_graph, fantasy_knots[]
+
+    OUTPUT: propositions[]
+
+    PROCESS:
+        FOR each knot IN fantasy_knots
+            proposition = {
+                id: generate_id("prop"),
+                statement: generate_statement(knot),
+                causal_form: extract_causal_form(knot),
+                boundary: generate_boundary(knot),
+                failure_conditions: generate_failure_conditions(knot),
+                rewrite_hooks: determine_rewrite_hooks(knot),
+                witchcraft_risk: 0.0  # Initial score
+            }
+            ADD proposition TO propositions
+        END FOR
+
+    FAILURE STRATEGY:
+        IF boundary_cannot_be_generated THEN
+            MARK proposition "ideology_risk" + DEGRADE to hypothesis
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION apply_negation_transform(proposition)
+    INPUT: proposition
+
+    OUTPUT: alternative_propositions[], causal_feedback_analysis
+
+    PROCESS:
+        alternatives = []
+
+        # Negate each sub-word
+        FOR each word IN proposition.statement
+            negated = negate_word(word)
+            alt_statement = replace(proposition.statement, word, negated)
+            ADD alt_statement TO alternatives
+        END FOR
+
+        # Analyze how causal form shapes expression
+        causal_feedback = {
+            original_causal: proposition.causal_form,
+            expression_constraints: extract_constraints(proposition.causal_form),
+            alternative_expressions: generate_alternative_expressions(proposition)
+        }
+
+    FAILURE STRATEGY:
+        IF all_alternatives_self_congruent THEN
+            MARK proposition "closed_structure" + log_warning("No external alternatives")
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION detect_witchcraft(proposition, alternatives)
+    INPUT: proposition, alternatives[]
+
+    OUTPUT: witchcraft_score,处置_decision
+
+    PROCESS:
+        score = 0.0
+        reasons = []
+
+        # Signal 1: Definition self-reference loop
+        IF has_definition_loop(proposition) THEN
+            score += 0.3
+            ADD "定义自指环" TO reasons
+        END IF
+
+        # Signal 2: Causal inversion
+        IF has_causal_inversion(proposition) THEN
+            score += 0.2
+            ADD "因果倒置" TO reasons
+        END IF
+
+        # Signal 3: Boundary missing
+        IF proposition.boundary IS empty OR proposition.failure_conditions IS empty THEN
+            score += 0.4
+            ADD "边界缺失" TO reasons
+        END IF
+
+        # Signal 4: Exclusivity closure
+        IF is_exclusively_closed(proposition, alternatives) THEN
+            score += 0.3
+            ADD "排他性封闭" TO reasons
+        END IF
+
+        # Signal 5: Negation non-insertable
+        IF no_valid_alternatives(alternatives) THEN
+            score += 0.2
+            ADD "否定不可插入" TO reasons
+        END IF
+
+        # Determine disposal
+        IF score < 0.3 THEN
+            decision = "PASS"
+        ELSE IF score >= 0.3 AND score < 0.6 THEN
+            decision = "ENFORCE_BOUNDARIES"
+        ELSE
+            decision = "SILENCE_STRATEGY"
+        END IF
+
+    FAILURE STRATEGY:
+        IF cannot_determine THEN
+            RETURN 0.5, "ENFORCE_BOUNDARIES"  # Conservative
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION rewrite_by_power_chain(proposition, I4_variables, power_chain)
+    INPUT: proposition, I4_variables, power_chain
+
+    OUTPUT: rewritten_proposition, rewrite_log_entry
+
+    PROCESS:
+        rewritten = clone(proposition)
+        changed_fields = []
+
+        # Apply power chain effects
+        FOR each rule_id, effect IN power_chain.effect_on_rules
+            IF rule_id == proposition.id THEN
+                CASE effect:
+                    WHEN "强化":
+                        IF effect_exists("boundary") THEN
+                            rewritten.boundary += ", " + I4.power_distance_context
+                            ADD "boundary" TO changed_fields
+                        END IF
+                    WHEN "排他":
+                        IF effect_exists("exclusivity_filters") THEN
+                            ADD exclusion_filter TO rewritten.exclusivity_filters
+                            ADD "exclusivity_filters" TO changed_fields
+                        END IF
+                    WHEN "扩张":
+                        expand_boundary(rewritten, I4)
+                        ADD "boundary" TO changed_fields
+                    WHEN "收缩":
+                        narrow_boundary(rewritten, I4)
+                        ADD "boundary" TO changed_fields
+                    WHEN "遮蔽":
+                        add_silence_condition(rewritten)
+                        ADD "failure_conditions" TO changed_fields
+                END CASE
+            END IF
+        END FOR
+
+        log_entry = {
+            timestamp: now(),
+            proposition_id: proposition.id,
+            trigger_source: "权力链",
+            changed_fields: changed_fields,
+            before: proposition,
+            after: rewritten,
+            reasoning: explain_rewrite(power_chain, I4_variables)
+        }
+
+    FAILURE STRATEGY:
+        IF I4_variables IS empty THEN
+            SKIP rewrite, RETURN proposition, null
+        END IF
+END FUNCTION
+
+================================================================================
+
+FUNCTION emit_outputs(all_stage_outputs)
+    INPUT: all_stage_outputs
+
+    OUTPUT: O1_symbol_graph, O2_rule_deck, O3_rewrite_log, O4_silence_report, O5_seeds
+
+    PROCESS:
+        O1 = {
+            symbols: all_stage_outputs.symbols,
+            fantasy_knots: all_stage_outputs.fantasy_knots,
+            power_chains_current: all_stage_outputs.power_chains,
+            graph_metrics: calculate_metrics(all_stage_outputs)
+        }
+
+        O2 = {
+            proposition_cards: all_stage_outputs.propositions,
+            deck_statistics: calculate_statistics(all_stage_outputs.propositions)
+        }
+
+        O3 = {
+            rewrite_entries: all_stage_outputs.rewrite_logs
+        }
+
+        O4 = {
+            silence_entries: all_stage_outputs.silence_decisions
+        }
+
+        O5 = {
+            questions: all_stage_outputs.interrogation_questions
+        }
+
+    FAILURE STRATEGY:
+        IF partial_data_missing THEN
+            OUTPUT available_data + missing_fields_report
+        END IF
+END FUNCTION
+
+================================================================================
+MAIN EXECUTION LOOP
+================================================================================
+
+FUNCTION main(I1, I2, I3, I4)
+    # Stage 1: Field Ingestion
+    fantasy_candidates = ingest_field(I1, I2, I3)
+
+    # Stage 2: Slicing
+    repetition_patterns = extract_repetition(fantasy_candidates)
+    raw_symbols = slice_symbols(repetition_patterns)
+
+    # Stage 3: Freezing
+    frozen_symbols = freeze_definitions(raw_symbols)
+
+    # Stage 4: Exclusivity Filtering
+    exclusivity_filters = extract_filters(frozen_symbols)
+
+    # Stage 5: Symbolization & Ordering
+    symbol_graph = build_symbol_graph(frozen_symbols)
+    fantasy_knots = build_fantasy_knots(frozen_symbols, repetition_patterns)
+
+    # Stage 6: Proposition Generation
+    propositions = generate_propositions_with_boundaries(symbol_graph, fantasy_knots)
+
+    # Stage 7: Interrogation Driver
+    FOR each proposition IN propositions
+        alternatives = apply_negation_transform(proposition)
+        proposition.alternatives = alternatives
+    END FOR
+
+    # Stage 8: Witchcraft Detection
+    FOR each proposition IN propositions
+        proposition.witchcraft_risk, decision = detect_witchcraft(proposition, proposition.alternatives)
+        IF decision == "SILENCE_STRATEGY" THEN
+            ADD_TO(proposition, silence_report)
+        ELSE IF decision == "ENFORCE_BOUNDARIES" THEN
+            proposition = enforce_boundaries(proposition)
+        END IF
+    END FOR
+
+    # Stage 9: Power Chain Rewrite
+    power_chain = build_power_chain(symbol_graph)
+    rewrite_logs = []
+    FOR each proposition IN propositions
+        rewritten, log_entry = rewrite_by_power_chain(proposition, I4, power_chain)
+        IF log_entry IS NOT null THEN
+            ADD log_entry TO rewrite_logs
+        END IF
+    END FOR
+
+    # Stage 10: Packaging
+    outputs = emit_outputs({
+        symbols: frozen_symbols,
+        fantasy_knots: fantasy_knots,
+        propositions: propositions,
+        power_chains: [power_chain],
+        rewrite_logs: rewrite_logs,
+        silence_report: silence_entries,
+        interrogation_questions: extract_questions(propositions)
+    })
+
+    RETURN outputs
+END FUNCTION
+
+================================================================================
+HELPER FUNCTIONS
+================================================================================
+
+FUNCTION calculate_force_index(repetition_count, exclusivity_score, power_trigger)
+    RETURN (repetition_count * 0.4) + (exclusivity_score * 0.4) + (power_trigger * 0.2)
+END FUNCTION
+
+FUNCTION generate_id(prefix)
+    RETURN prefix + "_" + random_three_digits()
+END FUNCTION
+
+FUNCTION analyze_valence(context)
+    # Abstract emotional dimensions
+    RETURN {
+        "张力": detect_tension(context),
+        "压迫": detect_oppression(context),
+        "诱惑": detect_temptation(context),
+        "迟疑": detect_hesitation(context),
+        "清明": detect_clarity(context)
+    }
+END FUNCTION
+
+FUNCTION detect_carrier_type(text)
+    # Determine if symbol acts as subject, object, environment, or purpose
+    IF is_actor(text) THEN RETURN "叙事主体"
+    ELSE IF is_obstacle(text) THEN RETURN "叙事客体"
+    ELSE IF is_environment(text) THEN RETURN "环境载体"
+    ELSE IF is_purpose(text) THEN RETURN "目的论对象"
+    ELSE RETURN "抽象概念"
+END FUNCTION
+
+================================================================================
+END OF PSEUDO-CODE
+================================================================================

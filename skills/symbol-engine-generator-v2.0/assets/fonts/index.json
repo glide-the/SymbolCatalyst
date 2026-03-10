@@ -1,0 +1,18 @@
+{
+  "assets": [
+    {
+      "filename": "font_manifest.json",
+      "source": "generated",
+      "license": "n/a",
+      "usage": "font-manifest",
+      "notes": "Font specs and download instructions"
+    },
+    {
+      "filename": "download_fonts.sh",
+      "source": "generated",
+      "license": "n/a",
+      "usage": "font-downloader",
+      "notes": "Bash script to download font files"
+    }
+  ]
+}

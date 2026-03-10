@@ -1,0 +1,28 @@
+{
+  "assets": [
+    {
+      "filename": "placeholder_00.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "card-background",
+      "notes": "Placeholder SVG — query: abstract gradient texture"
+    },
+    {
+      "filename": "placeholder_01.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "card-background",
+      "notes": "Placeholder SVG — query: dark minimal geometric"
+    },
+    {
+      "filename": "placeholder_02.svg",
+      "source": "placeholder",
+      "source_url": "",
+      "license": "generated",
+      "usage": "card-background",
+      "notes": "Placeholder SVG — query: abstract fluid art"
+    }
+  ]
+}

@@ -54,6 +54,11 @@
 - `skill-creator/`
   本地技能封装与校验工具。
 
+### 4. 分析文档
+
+- `doc/角色设定评价系统设计师与引擎规范分析.md`
+  对外部“角色设定评价系统设计师与引擎规范”设计信息的结构化整理。
+
 ## 这个项目和“角色设定评价系统”的关系
 
 外部需求把目标说得很明确：现有 `game-engine-package` 的打包结果，需要被转换成角色设定评价系统可读的配置，而不是直接把上游 JSON 和 Markdown 原样喂给运行时。
@@ -92,9 +97,10 @@
 如果你关心接入实现，优先看：
 
 1. `08_角色设定评价系统接入说明.md`
-2. `files/data/symbol_engine_20260218_v2.0.json`
-3. `files/research_notes/01_data_structures.md`
-4. `skills/object-engine-generator-v1.0/integration_guide.md`
+2. `doc/角色设定评价系统设计师与引擎规范分析.md`
+3. `files/data/symbol_engine_20260218_v2.0.json`
+4. `files/research_notes/01_data_structures.md`
+5. `skills/object-engine-generator-v1.0/integration_guide.md`
 
 ## 当前边界
 
